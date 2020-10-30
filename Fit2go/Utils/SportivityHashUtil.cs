@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Fit2go.Utils
@@ -14,15 +15,7 @@ namespace Fit2go.Utils
             return GetStringFromBytes(s_hashAlgorithm.ComputeHash(bytes));
         }
 
-        private static string GetStringFromBytes(byte[] bytes)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            foreach (byte b in bytes)
-            {
-                string text = b.ToString("x2");
-                stringBuilder.Append(text);
-            }
-            return stringBuilder.ToString();
-        }
+        private static string GetStringFromBytes(byte[] hash) =>
+            string.Concat(hash.Select(b => b.ToString("x2")));
     }
 }

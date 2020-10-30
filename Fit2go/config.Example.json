@@ -1,0 +1,14 @@
+{
+	"LocationId": 0,
+	"Email": {
+		"SendgridApiKey": "",
+		"EmailFrom": "",
+		"NameFrom": ""
+	},
+	"Users": [
+		{
+			"User": "",
+			"Password": ""
+		}
+	]
+}

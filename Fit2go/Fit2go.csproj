@@ -2,11 +2,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0-rc.2.20475.5" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.9" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
+    <PackageReference Include="SendGrid" Version="9.21.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0-rc.2.20475.5" />
     <PackageReference Include="System.Text.Json" Version="5.0.0-rc.2.20475.5" />
   </ItemGroup>
@@ -18,7 +20,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
-    <None Update="users.json">
+    <None Update="config.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </None>

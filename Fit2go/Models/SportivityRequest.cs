@@ -3,19 +3,17 @@ using Fit2go.Utils;
 
 namespace Fit2go.Models
 {
-    public class SportivityRequest
+    public abstract class SportivityRequest
     {
-        public SportivityRequest(UserOption user)
+        protected SportivityRequest(UserOption user)
         {
             User = user.User;
             Password = user.Password;
-            Hash = SportivityHashUtil.GetSha1($"moshi moshi {user} desu");
+            Hash = SportivityHashUtil.GetSha1($"moshi moshi {user.User} desu");
         }
 
-        protected SportivityRequest() { }
-
-        public string User { get; set; }
-        public string Password { get; set; }
-        public string Hash { get; protected set; }
+        public string User { get; }
+        public string Password { get; }
+        public string Hash { get; }
     }
 }

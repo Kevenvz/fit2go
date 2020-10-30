@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Fit2go;
 using Fit2go.Clients;
+using Fit2go.Options;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +13,12 @@ namespace Fit2go
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            IConfiguration config = builder.GetContext().Configuration;
+            builder.Services.Configure<SportivityOptions>(config);
+            builder.Services.Configure<EmailOptions>(config.GetSection(EmailOptions.Section));
+
             builder.Services.AddHttpClient<SportivityClient>();
+            builder.Services.AddHttpClient<SendgridClient>();
         }
 
         public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
@@ -20,7 +26,7 @@ namespace Fit2go
             FunctionsHostBuilderContext context = builder.GetContext();
 
             builder.ConfigurationBuilder
-                .AddJsonFile(Path.Combine(context.ApplicationRootPath, "users.json"), optional: true, reloadOnChange: false)
+                .AddJsonFile(Path.Combine(context.ApplicationRootPath, "config.json"), optional: true, reloadOnChange: false)
                 .AddEnvironmentVariables();
         }
     }
